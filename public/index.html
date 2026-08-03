@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taller 2 DevOps — Calculadora Distribuida (HU2)</title>
+  <title>Taller 2 DevOps — Calculadora Distribuida (HU3)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
         <div class="logo-icon">⚡</div>
         <div>
           <h1>Taller 2 DevOps</h1>
-          <p class="subtitle">Simulación de Despliegue — Multi-Operación (HU2)</p>
+          <p class="subtitle">Simulación de Despliegue — Historial SoR (HU3)</p>
         </div>
       </div>
       <div class="status-badge-container">
@@ -35,11 +35,11 @@
 
     <!-- Layout Grid Principal -->
     <main class="grid-layout">
-      <!-- Tarjeta 1: Calculadora Multi-Operación (HU2: Suma, Resta, Multiplicación) -->
+      <!-- Tarjeta 1: Calculadora Multi-Operación (HU1, HU2) -->
       <section class="card calculator-card">
         <div class="card-header">
           <h3>🧮 Calculadora Distribuida</h3>
-          <span class="badge-tag">HU2: REST API</span>
+          <span class="badge-tag">REST API</span>
         </div>
 
         <div class="input-group-grid">
@@ -70,6 +70,19 @@
           <div id="resultDisplay" class="result-value">--</div>
           <div id="resultOperation" class="result-subtext">Esperando interacción del usuario</div>
         </div>
+      </section>
+
+      <!-- Tarjeta 2: Historial del Sistema de Registro (HU3) -->
+      <section class="card history-card">
+        <div class="card-header">
+          <h3>📜 Historial SoR (Últimas 5)</h3>
+          <button id="refreshHistoryBtn" class="icon-btn" title="Actualizar Historial">🔄</button>
+        </div>
+        <p class="card-description">Persistencia en <code>sor_history.txt</code> en el Servidor Backend.</p>
+
+        <ul id="historyList" class="history-list">
+          <li class="empty-state">No hay operaciones registradas aún.</li>
+        </ul>
       </section>
     </main>
 

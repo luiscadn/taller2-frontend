@@ -1,4 +1,4 @@
-// JavaScript Client Logic - HU2 Multi-Operación (Taller 2 DevOps ICESI)
+// JavaScript Client Logic - HU3 Historial SoR (Taller 2 DevOps ICESI)
 
 let BACKEND_URL = 'http://localhost:8080';
 
@@ -9,11 +9,14 @@ const inputAEl = document.getElementById('inputA');
 const inputBEl = document.getElementById('inputB');
 const resultDisplayEl = document.getElementById('resultDisplay');
 const resultOperationEl = document.getElementById('resultOperation');
+const historyListEl = document.getElementById('historyList');
+const refreshHistoryBtn = document.getElementById('refreshHistoryBtn');
 
 // Inicialización de la aplicación
 document.addEventListener('DOMContentLoaded', async () => {
   await loadConfig();
   setupEventListeners();
+  await fetchHistory();
 });
 
 // Cargar la configuración expuesta por el servidor Express
@@ -39,6 +42,10 @@ function setupEventListeners() {
       performOperation(op);
     });
   });
+
+  if (refreshHistoryBtn) {
+    refreshHistoryBtn.addEventListener('click', fetchHistory);
+  }
 }
 
 // Ejecutar Operación (Suma, Resta, Multiplicación) en Backend
@@ -74,7 +81,10 @@ async function performOperation(operation) {
     if (response.ok) {
       resultDisplayEl.textContent = data.result;
       resultOperationEl.textContent = data.operation;
-      setConnectionStatus(true, 'Backend Online (HU2)');
+      setConnectionStatus(true, 'Backend Online (HU3)');
+
+      // Actualizar automáticamente el historial en SoR
+      await fetchHistory();
     } else {
       resultDisplayEl.textContent = '❌ ERROR';
       resultOperationEl.textContent = `Error HTTP ${response.status}`;
@@ -84,6 +94,31 @@ async function performOperation(operation) {
     resultDisplayEl.textContent = '❌ ERROR';
     resultOperationEl.textContent = `No se pudo alcanzar el Backend en ${BACKEND_URL}.`;
     setConnectionStatus(false, 'Backend Desconectado');
+  }
+}
+
+// Consultar Historial (HU3)
+async function fetchHistory() {
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/history`);
+    if (!res.ok) return;
+
+    const data = await res.json();
+    historyListEl.innerHTML = '';
+
+    if (!data.history || data.history.length === 0) {
+      historyListEl.innerHTML = '<li class="empty-state">No hay operaciones registradas aún.</li>';
+      return;
+    }
+
+    data.history.forEach(item => {
+      const li = document.createElement('li');
+      li.className = 'history-item';
+      li.textContent = item;
+      historyListEl.appendChild(li);
+    });
+  } catch (err) {
+    console.warn('Error al obtener el historial:', err);
   }
 }
 
