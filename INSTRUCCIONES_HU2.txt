@@ -1,0 +1,26 @@
+====================================================================
+INSTRUCCIONES DE ACTUALIZACIÓN - HISTORIA DE USUARIO 2 (Frontend UI)
+REPOSITORIO: taller2-frontend
+ENTORNO OBJETIVO: Servidor Frontend (Linux/Ubuntu) - Puerto: 3000
+====================================================================
+
+1. DETENER EL PROCESO ANTERIOR (HU1):
+   - Detener el proceso del servidor Node.js/Express en ejecución:
+     pkill -f node || true
+
+2. ACTUALIZAR CÓDIGO FUENTE:
+   - Descomprimir el paquete de actualización 'entrega_HU2_frontend.zip':
+     unzip -o entrega_HU2_frontend.zip -d /opt/taller2-frontend
+     cd /opt/taller2-frontend
+
+3. INICIAR EL SERVICIO EN PUERTO 3000:
+   - Configurar variables e iniciar el servicio nuevamente:
+     export BACKEND_URL="http://<IP_PC1_BACKEND>:8080"
+     export PORT=3000
+     nohup npm start > frontend.log 2>&1 &
+
+4. VERIFICACIÓN DE OPERATIVIDAD (PRUEBA DE HUMO):
+   - Abrir http://localhost:3000 en el navegador.
+   - Probar los selectores de resta (-) y multiplicación (×).
+
+====================================================================

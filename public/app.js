@@ -1,4 +1,4 @@
-// JavaScript Client Logic - HU1 Servicio de Suma (Taller 2 DevOps ICESI)
+// JavaScript Client Logic - HU2 Multi-Operación (Taller 2 DevOps ICESI)
 
 let BACKEND_URL = 'http://localhost:8080';
 
@@ -33,14 +33,16 @@ async function loadConfig() {
 
 // Event Listeners
 function setupEventListeners() {
-  const sumBtn = document.querySelector('.op-btn[data-op="sum"]');
-  if (sumBtn) {
-    sumBtn.addEventListener('click', performSum);
-  }
+  document.querySelectorAll('.op-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const op = btn.getAttribute('data-op');
+      performOperation(op);
+    });
+  });
 }
 
-// Ejecutar Operación de Suma (HU1) en Backend
-async function performSum() {
+// Ejecutar Operación (Suma, Resta, Multiplicación) en Backend
+async function performOperation(operation) {
   const a = parseFloat(inputAEl.value);
   const b = parseFloat(inputBEl.value);
 
@@ -50,7 +52,13 @@ async function performSum() {
     return;
   }
 
-  const url = `${BACKEND_URL}/api/sum`;
+  const endpointMap = {
+    sum: '/api/sum',
+    subtract: '/api/subtract',
+    multiply: '/api/multiply'
+  };
+
+  const url = `${BACKEND_URL}${endpointMap[operation]}`;
 
   try {
     const response = await fetch(url, {
@@ -66,13 +74,13 @@ async function performSum() {
     if (response.ok) {
       resultDisplayEl.textContent = data.result;
       resultOperationEl.textContent = data.operation;
-      setConnectionStatus(true, 'Backend Online (HU1)');
+      setConnectionStatus(true, 'Backend Online (HU2)');
     } else {
       resultDisplayEl.textContent = '❌ ERROR';
       resultOperationEl.textContent = `Error HTTP ${response.status}`;
     }
   } catch (err) {
-    console.error('Fallo de red en suma:', err);
+    console.error('Fallo de red en operación:', err);
     resultDisplayEl.textContent = '❌ ERROR';
     resultOperationEl.textContent = `No se pudo alcanzar el Backend en ${BACKEND_URL}.`;
     setConnectionStatus(false, 'Backend Desconectado');
