@@ -1,10 +1,10 @@
-# 🌐 Repositorio 2: taller2-frontend
+# Repositorio 2: taller2-frontend
 
 Aplicación Web e Interfaz Gráfica Distribuida para el **Taller 2: Simulación de Despliegue DevOps — La Pared de la Confusión y Automatización** de la Universidad ICESI. Desarrollado en Node.js con Express, HTML5, CSS3 Glassmorphism y Vanilla Javascript.
 
 ---
 
-## 📋 Funcionalidades Implementadas
+## Funcionalidades Implementadas
 
 - **Consumo REST Parametrizable**: Se conecta a la API del Backend según la variable de entorno `BACKEND_URL` (por defecto `http://localhost:8080`).
 - **Controladores de Interfaz (HU1, HU2, HU4)**:
@@ -17,7 +17,7 @@ Aplicación Web e Interfaz Gráfica Distribuida para el **Taller 2: Simulación 
 
 ---
 
-## 📂 Estructura del Repositorio
+## Estructura del Repositorio
 
 ```text
 taller2-frontend/
@@ -34,7 +34,7 @@ taller2-frontend/
 
 ---
 
-## 🛠️ Guía de Despliegue Manual — Fase 1 (Silos Organizacionales / ZIP)
+## Guía de Despliegue Manual — Fase 1 (Silos Organizacionales / ZIP)
 
 En la Fase 1, el equipo de **Devs** envía el código en un comprimido `.zip` al equipo de **Ops**.
 
@@ -47,7 +47,7 @@ En la Fase 1, el equipo de **Devs** envía el código en un comprimido `.zip` al
    ```
 
 2. **Configurar la Regla de Firewall (UFW)**:
-   > ⚠️ **RESTRICCIÓN DE RED**: El cortafuegos debe bloquear todo el tráfico entrante excepto el puerto del Frontend (`3000`).
+   > **RESTRICCIÓN DE RED**: El cortafuegos debe bloquear todo el tráfico entrante excepto el puerto del Frontend (`3000`).
    ```bash
    sudo ufw default deny incoming
    sudo ufw default allow outgoing
@@ -76,7 +76,7 @@ En la Fase 1, el equipo de **Devs** envía el código en un comprimido `.zip` al
 
 ---
 
-## ⚡ Guía de Despliegue Automatizado — Fase 2 (Adopción DevOps / IaC)
+## Guía de Despliegue Automatizado — Fase 2 (Adopción DevOps / IaC)
 
 En la Fase 2, el equipo integrado ejecuta la automatización del despliegue:
 
