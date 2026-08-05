@@ -59,7 +59,7 @@ app.get('/config', (req, res) => {
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`==========================================================================`);
-  console.log(`🌐 Servidor Frontend corriendo exitosamente`);
+  console.log(`🌐 Servidor Frontend corriendo exitosamente (Fase 2)`);
   console.log(`Servidor Local:   http://localhost:${PORT}`);
   console.log(`Backend URL:      ${BACKEND_URL}`);
   console.log(`Status Telemetría:http://localhost:${PORT}/status`);

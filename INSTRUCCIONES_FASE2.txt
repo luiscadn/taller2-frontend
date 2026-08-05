@@ -1,0 +1,32 @@
+====================================================================
+INSTRUCCIONES DE DESPLIEGUE Y ACTUALIZACIÓN - FASE 2 (Frontend UI - HU4 & HU5)
+REPOSITORIO: taller2-frontend
+ENTORNO OBJETIVO: Servidor Frontend (Linux/Ubuntu) - Puerto: 3000
+====================================================================
+
+1. DETENER EL PROCESO ANTERIOR (Fase 1 / HU3):
+   - Detener el servidor Express en ejecución:
+     pkill -f node || true
+
+2. ACTUALIZAR CÓDIGO FUENTE:
+   - Descomprimir el paquete de actualización de la Fase 2 ('entrega_fase2_frontend.zip'):
+     unzip -o entrega_fase2_frontend.zip -d /opt/taller2-frontend
+     cd /opt/taller2-frontend
+
+3. INICIAR EL SERVICIO EN PUERTO 3000:
+   - Exportar variables de entorno (URL del backend y puerto UI):
+     export BACKEND_URL="http://<IP_PC1_BACKEND>:8080"
+     export PORT=3000
+
+   - Iniciar en segundo plano:
+     nohup npm start > frontend.log 2>&1 &
+
+4. VERIFICACIÓN DE OPERATIVIDAD (PRUEBA DE HUMO):
+   - Verificar telemetría desde consola:
+     curl http://localhost:3000/status
+
+   - Abrir http://localhost:3000 en el navegador:
+     1. Probar la división por cero (ej. 10 ÷ 0) y verificar la alerta amigable de HTTP 400 Bad Request (HU4).
+     2. Verificar que la tarjeta de Telemetría y Salud (HU5) muestre el Uptime y estado del Backend en vivo.
+
+====================================================================
